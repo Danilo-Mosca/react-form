@@ -15,7 +15,6 @@ export default function MainComponent() {
                 content={post.content}
                 state={post.state}
                 key={post.id} />
-
         }
         )
     );

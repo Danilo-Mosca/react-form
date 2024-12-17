@@ -1,24 +1,49 @@
 import { useState } from "react";
+import posts from '../data/posts';
+
 const initialPost = {
     id: "",
     title: "",
     content: "",
-    state: "",
+    state: "draft",
 };
+
 function BlogForm() {
-    // Variabile di stato dei post
-    const [post, setPost] = useState(initialPost);
+    // Variabile di stato dei post, che conterrà un oggetto dei post
+    const [post, setPost] = useState(posts);
     // Variabile di stato della lista di post
     const [postList, setPostList] = useState([]);
 
     // Funzione che gestisce gli eventi sulle Input text
     function handlerInput(event) {
+        /* Metodo lungo: */
+        // const newPost = { ...post };    // Mi creo una copia dell'oggetto post
+        // newPost[event.target.name] = event.target.value;    //Gli assegno ogni suo corrispettivo valore
+        // setPost(newPost);   // Setto la variabile oggetto di stato
 
+        // Alla costante value assegno il valore "published" se è checkata altrimenti lascio quello di default "draft" e procedo con le assegnazioni di altri valori delle Input
+        const value = event.target.type === "checkbox" ? "published" : event.target.value;
+
+        /* Metodo breve: */
+        // Creo prima una copia dell'oggetto posto con il rest operator ...post
+        // poi assegno alla rispettiva chiave (cercata dinamicamente in base al valore
+        // contenuto in [event.target.name]) il valore assegnato al controllo precedente a value
+        setPost({ ...post, [event.target.name]: value });
     }
 
     // Funzione che gestisce l'evento al click sul pulsante di invio
     function handlerSubmit(event) {
+        event.PreventDefault();     //blocco il caricamento della pagina
+        // /* Metodo lungo (come sopra): */
+        // const newPostList = {...postList};
+        // newPostList.push(post);
+        // setPostList(newPostList);
 
+        /* Metodo breve (come sopra): */
+        setPostList([...postList, post]);
+        
+        // Svuoto il form dai valori inseriti dopo il click al pulsante di submit
+        setPost(initialPost);
     }
 
     //parte html da ritornare
@@ -48,7 +73,7 @@ function BlogForm() {
                         Contenuto dell'articolo
                     </label>
                     <textarea
-                        class="form-control"
+                        className="form-control"
                         id="content"
                         rows="5"
                         type="text"

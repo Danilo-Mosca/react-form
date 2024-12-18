@@ -1,16 +1,16 @@
 import { useState } from "react";
-import posts from '../data/posts';
 
 const initialPost = {
     id: "",
     title: "",
+    image: "https://picsum.photos/640/480",
     content: "",
-    state: "draft",
+    published: false,
 };
 
 function BlogForm() {
     // Variabile di stato dei post, che conterrà un oggetto dei post
-    const [post, setPost] = useState(posts);
+    const [post, setPost] = useState(initialPost);
     // Variabile di stato della lista di post
     const [postList, setPostList] = useState([]);
 
@@ -21,19 +21,33 @@ function BlogForm() {
         // newPost[event.target.name] = event.target.value;    //Gli assegno ogni suo corrispettivo valore
         // setPost(newPost);   // Setto la variabile oggetto di stato
 
-        // Alla costante value assegno il valore "published" se è checkata altrimenti lascio quello di default "draft" e procedo con le assegnazioni di altri valori delle Input
-        const value = event.target.type === "checkbox" ? "published" : event.target.value;
+        // Alla costante value assegno il valore "true" (con event.target.checked) se è checkata altrimenti lascio quello di default "false" e procedo con le assegnazioni di altri valori delle Input
+        const value = event.target.type === "checkbox" ? event.target.checked : event.target.value;
+
+        let newId;
+        if (postList.length === 0) {
+            newId = 1;
+        }
+        else {
+            const objectId = postList.reduce((previous, next) => {
+                return next.id > previous.id ? next : previous;
+            });
+            newId = objectId.id;
+            newId++;
+        }
 
         /* Metodo breve: */
         // Creo prima una copia dell'oggetto posto con il rest operator ...post
         // poi assegno alla rispettiva chiave (cercata dinamicamente in base al valore
         // contenuto in [event.target.name]) il valore assegnato al controllo precedente a value
-        setPost({ ...post, [event.target.name]: value });
+        setPost({ ...post, id: newId, [event.target.name]: value });
+        // setPost([...post, { id: newId, title: event.target.value }]);
+
     }
 
     // Funzione che gestisce l'evento al click sul pulsante di invio
     function handlerSubmit(event) {
-        event.PreventDefault();     //blocco il caricamento della pagina
+        event.preventDefault();     //blocco il caricamento della pagina
         // /* Metodo lungo (come sopra): */
         // const newPostList = {...postList};
         // newPostList.push(post);
@@ -41,7 +55,7 @@ function BlogForm() {
 
         /* Metodo breve (come sopra): */
         setPostList([...postList, post]);
-        
+
         // Svuoto il form dai valori inseriti dopo il click al pulsante di submit
         setPost(initialPost);
     }
@@ -76,10 +90,9 @@ function BlogForm() {
                         className="form-control"
                         id="content"
                         rows="5"
-                        type="text"
                         value={post.content}
                         onChange={handlerInput}
-                        name="surname">
+                        name="content">
                     </textarea>
                 </div>
 
@@ -87,11 +100,11 @@ function BlogForm() {
                     <input
                         type="checkbox"
                         className="form-check-input"
-                        id="postPublished"
+                        id="published"
                         name="published"
                         onChange={handlerInput}
                     />
-                    <label className="form-check-label" htmlFor="postPublished">
+                    <label className="form-check-label" htmlFor="published">
                         Clicca qui se vuoi pubblicare subito, altrimenti lascialo in bozza
                     </label>
                 </div>

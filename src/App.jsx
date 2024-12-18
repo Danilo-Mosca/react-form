@@ -13,7 +13,6 @@ function App() {
       <main className="container">
         <div className="row">
           <MainComponent />
-          <BlogForm />
         </div>
       </main>
       <Footer />

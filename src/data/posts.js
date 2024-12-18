@@ -5,7 +5,7 @@ const posts = [
         image: '../../img/Rome.jpg',
         content:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit animi unde quasi enim non esse ratione voluptas voluptate, officiis veritatis magni blanditiis possimus nobis cum id inventore corporis deserunt hic.",
-        state: "draft",
+        published: true,
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ const posts = [
         image: '',
         content:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit animi unde quasi enim non esse ratione voluptas voluptate, officiis veritatis magni blanditiis possimus nobis cum id inventore corporis deserunt hic.",
-        state: "published",
+        published: false,
     },
     {
         id: 3,
@@ -21,7 +21,7 @@ const posts = [
         image: '',
         content:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit animi unde quasi enim non esse ratione voluptas voluptate, officiis veritatis magni blanditiis possimus nobis cum id inventore corporis deserunt hic.",
-        state: "draft",
+        published: true,
     },
     {
         id: 4,
@@ -29,7 +29,7 @@ const posts = [
         image: '',
         content:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit animi unde quasi enim non esse ratione voluptas voluptate, officiis veritatis magni blanditiis possimus nobis cum id inventore corporis deserunt hic.",
-        state: "published",
+        published: true,
     },
 ];
 

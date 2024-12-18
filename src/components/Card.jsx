@@ -7,7 +7,9 @@ function Card({
     title,
     image = "https://picsum.photos/640/480",
     content,
-    published }) {
+    published,
+    onDelete }) {
+
     return (
         <div className={`${style.cards} card col-6 col-sm-6 col-md-3 col-lg-3 mb-3 mt-3 p-0 column-gap-3`}>
 
@@ -19,11 +21,11 @@ function Card({
 
 
             <div className="card-body">
-                <h5 className="card-title">{title}</h5>
+                <h4 className="card-title">{title}</h4>
                 <p className="card-text">{content}</p>
                 <p className=" card-text">
                     {published ? <span className={`${style["published-text"]}`}>Pubblicato</span> : <span className={`${style["not-published-text"]}`}>Non pubblicato</span>}</p>
-                <a href="#" className={`btn btn-primary ${style.btncustom}`}>Cancella</a>
+                <button onClick={onDelete} className={`btn btn-primary ${style.btncustom}`}>Cancella</button>
             </div>
         </div>
     );

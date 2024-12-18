@@ -16,6 +16,13 @@ export default function MainComponent() {
     const [postList, setPostList] = useState([]);
 
 
+    // Funzione che cancella il post agganciata al click del pulsante
+    function deletedPost(id) {
+        setPostList(postList.filter((value) => value.id != id));
+    }
+
+
+
     // Funzione che gestisce gli eventi sulle Input text
     function handlerInput(event) {
         /* Metodo lungo: */
@@ -76,7 +83,8 @@ export default function MainComponent() {
                         image={post.image}
                         content={post.content}
                         published={post.published}
-                        key={post.id} />
+                        key={post.id} 
+                        onDelete={() => deletedPost(post.id)} />
                 }
                 )}
 

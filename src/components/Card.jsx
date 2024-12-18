@@ -21,7 +21,8 @@ function Card({
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{content}</p>
-                <p className="card-text">{published}</p>
+                <p className=" card-text">
+                    {published ? <span className={`${style["published-text"]}`}>Pubblicato</span> : <span className={`${style["not-published-text"]}`}>Non pubblicato</span>}</p>
                 <a href="#" className={`btn btn-primary ${style.btncustom}`}>Cancella</a>
             </div>
         </div>

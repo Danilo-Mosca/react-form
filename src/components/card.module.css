@@ -39,3 +39,12 @@
     padding: 10px;
     color: #007FFF;
 }
+
+.published-text {
+    font-size: 14px;
+    color: rgb(255, 157, 0);
+}
+.not-published-text {
+    font-size: 14px;
+    color: rgb(255, 0, 43);
+}

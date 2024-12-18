@@ -87,15 +87,15 @@ export default function MainComponent() {
                         image={post.image}
                         content={post.content}
                         published={post.published}
-                        key={post.id} 
+                        key={post.id}
                         onDelete={() => deletedPost(post.id)} />
                 }
                 )}
-            
-            <BlogForm 
-            handlerInput={handlerInput} 
-            handlerSubmit={handlerSubmit } 
-            postList={postList} 
+
+            <BlogForm
+                handlerInput={handlerInput}
+                handlerSubmit={handlerSubmit}
+                post={post}
             />
         </>
     );

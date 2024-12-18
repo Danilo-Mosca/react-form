@@ -1,5 +1,5 @@
 // Funzione che disegna il form per l'inserimento dati
-function BlogForm({ handlerInput, handlerSubmit, postList }) {
+function BlogForm({ handlerInput, handlerSubmit, post }) {
     //parte html da ritornare
     return (
         <section className="my-4">
@@ -14,7 +14,7 @@ function BlogForm({ handlerInput, handlerSubmit, postList }) {
                         className="form-control"
                         id="title"
                         aria-describedby="titlelHelp"
-                        value={postList.title}
+                        value={post.title}
                         onChange={handlerInput}
                         name="title"
                     />
@@ -30,7 +30,7 @@ function BlogForm({ handlerInput, handlerSubmit, postList }) {
                         className="form-control"
                         id="content"
                         rows="5"
-                        value={postList.content}
+                        value={post.content}
                         onChange={handlerInput}
                         name="content">
                     </textarea>
@@ -43,6 +43,7 @@ function BlogForm({ handlerInput, handlerSubmit, postList }) {
                         id="published"
                         name="published"
                         onChange={handlerInput}
+                        checked={post.published}
                     />
                     <label className="form-check-label" htmlFor="published">
                         Clicca qui se vuoi pubblicare subito, altrimenti lascialo in bozza
